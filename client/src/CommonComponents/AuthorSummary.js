@@ -6,7 +6,8 @@ import routes from '../routes';
 
 const AuthorSummary = ({author}) => (
   <div className={`post-container container`}>
-    <h3>{author}</h3>
+
+  <NavLink   to={routes.author.replace(':authorname', author)}>{author}</NavLink>
    </div>
 );
 
