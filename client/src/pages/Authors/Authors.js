@@ -1,15 +1,15 @@
 import React , {Component} from 'react';
 import apiCall from '../../services/apiCall'
 import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
-import PostSummary from '../../CommonComponents/PostSummary';
+import AuthorSummary from '../../CommonComponents/AuthorSummary';
 import ErrorMessage from '../../CommonComponents/ErrorMessage';
 
-class Home extends Component {
+class Authors extends Component {
     
     constructor() {
         super();
         this.state = {
-            posts: [],
+            authors: [],
             loading: false,
             hasError: false,
         }
@@ -20,9 +20,9 @@ class Home extends Component {
             loading : true,
            
         });
-        apiCall('posts').then(posts =>{
+        apiCall('authors').then(authors =>{
             this.setState({
-                posts,
+                authors,
                 loading : false,
                 hasError : false
             });
@@ -54,10 +54,10 @@ class Home extends Component {
                     null
             }
             {
-                this.state.posts.map(post => 
-                    <PostSummary 
-                        key={post.id} 
-                        post={post}/>
+                this.state.authors.map(author => 
+                    <AuthorSummary 
+                        key={author.id} 
+                        author={author}/>
                     )
             }
         </div>
@@ -65,4 +65,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Authors;

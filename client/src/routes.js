@@ -1,7 +1,7 @@
 const routes = {
     home : '/home',
-    authours : '/authors',
-    authour : '/author/:authorname',
+    authors : '/authors',
+    author : '/author/:authorname',
     newPost : '/new-post',
     post : '/post/:id'
 }
