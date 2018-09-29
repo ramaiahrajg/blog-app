@@ -11,6 +11,7 @@ class App extends Component {
   componentDidMount() {
     if (this.props.location.pathname==='/') {
       this.props.history.replace(routes.home);
+      
     }
   }
   render() {
