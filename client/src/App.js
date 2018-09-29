@@ -12,6 +12,7 @@ import Authors from './pages/Authors/Authors'
 import PropTypes from 'prop-types';
 import Post from './pages/Post/Post'
 import Author from './pages/Author/Author'
+import NewPost from './pages/NewPost/NewPost';
 
 
 
@@ -84,6 +85,12 @@ class App extends Component {
         path={routes.author} 
         component={Author} 
       />
+
+      <Route 
+          exact
+          path={routes.newPost} 
+          component={NewPost} 
+        />
     </div>
     );
   }
