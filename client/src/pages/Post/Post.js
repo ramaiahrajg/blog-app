@@ -1,26 +1,32 @@
 import React , {Component} from 'react';
 import apiCall from '../../services/apiCall'
+
 import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
 import PostSummary from '../../CommonComponents/PostSummary';
 import ErrorMessage from '../../CommonComponents/ErrorMessage';
 
-class Home extends Component {
-    
+class Post extends Component {
+
     constructor() {
         super();
+
         this.state = {
-            posts: [],
-            loading: false,
-            hasError: false,
+            post:{},
+            loading:false,
+            hasError : false,
         }
     }
     componentDidMount() {
         this.setState({
+           
             loading : true,
+           
         });
-        apiCall('posts').then(posts =>{
+        console.log(` The id is : ${this.props.match.params.id}`);
+        apiCall(`post/${this.props.match.params.id}`).then(post =>{
+            console.log(post);
             this.setState({
-                posts,
+                post,
                 loading : false,
                 hasError : false
             });
@@ -31,7 +37,8 @@ class Home extends Component {
             });
         });
     }
-    render() {
+
+    render(){
         return(
             <div className={`posts-container container`}>
             {
@@ -51,16 +58,14 @@ class Home extends Component {
                 :
                     null
             }
-            {
-                this.state.posts.map(post => 
-                    <PostSummary 
-                        key={post.id} 
-                        post={post}/>
-                    )
-            }
+            
+                <h2>{this.state.post.title} </h2>
+                <p>{this.state.post.author} </p>
+                <p>{this.state.post.content} </p>
+           
         </div>
         );
     }
 }
 
-export default Home;
+export default Post;

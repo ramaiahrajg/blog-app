@@ -9,11 +9,18 @@ import router from './routes';
 import Home from './pages/Home/Home'
 import routes from './routes';
 import Authors from './pages/Authors/Authors'
-
+import PropTypes from 'prop-types';
+import Post from './pages/Post/Post'
 
 
 
 class App extends Component {
+
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+  }
 
   componentDidMount() {
     if (this.props.location.pathname==='/') {
@@ -65,6 +72,11 @@ class App extends Component {
         exact
         path={routes.authors} 
         component={Authors} 
+      />
+        <Route 
+        exact
+        path={routes.post} 
+        component={Post} 
       />
     </div>
     );
