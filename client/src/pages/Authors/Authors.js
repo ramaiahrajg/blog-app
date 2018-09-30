@@ -3,6 +3,9 @@ import apiCall from '../../services/apiCall'
 import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
 import AuthorSummary from '../../CommonComponents/AuthorSummary';
 import ErrorMessage from '../../CommonComponents/ErrorMessage';
+import { NavLink } from 'react-router-dom';
+
+import routes from '../../routes';
 
 class Authors extends Component {
     
@@ -35,7 +38,8 @@ class Authors extends Component {
     }
     render() {
         return(
-            <div className={`posts-container container`}>
+            <div className={`container`}>
+            <h2>Authors</h2>
             {
                 this.state.loading
                 ?
@@ -53,13 +57,15 @@ class Authors extends Component {
                 :
                     null
             }
-            {
-                this.state.authors.map(author => 
-                    <AuthorSummary 
-                        key={author.id} 
-                        author={author}/>
-                    )
-            }
+            <ul className={`list-group`}>
+                    {
+                        this.state.authors.map((author, index) =>
+                            <li className={`list-group-item`} key={index}>
+                                <NavLink to={routes.author.replace(':authorname', author)}>{author}</NavLink>
+                            </li>
+                        )
+                    }
+                </ul>
         </div>
         );
     }
